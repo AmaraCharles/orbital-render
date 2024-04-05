@@ -19,7 +19,7 @@ function generateReferralCode(length) {
 
 
 router.post("/register", async (req, res) => {
-  const { firstName, lastName, email, password, country, referralCode } = req.body;
+  const { firstName, lastName, email, password, country, referralCode,DOB,phone} = req.body;
 
   try {
     // Check if any user has that email
@@ -64,6 +64,8 @@ router.post("/register", async (req, res) => {
       transactions: [],
       withdrawals: [],
       planHistory: [],
+      ohine,
+      DOB,
      
       accounts: {
         eth: {

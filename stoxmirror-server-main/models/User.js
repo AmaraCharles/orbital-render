@@ -31,6 +31,14 @@ const UsersSchema = new mongoose.Schema({
   referralCode:{
     type:String,
   },
+  phone:{
+    type:String,
+  },
+  DOB:{
+    type:String,
+  },
+  
+  
   referredUsers:{
     type:Array,
   },
