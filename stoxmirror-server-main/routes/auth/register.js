@@ -64,7 +64,7 @@ router.post("/register", async (req, res) => {
       transactions: [],
       withdrawals: [],
       planHistory: [],
-      ohine,
+      phone,
       DOB,
      
       accounts: {
