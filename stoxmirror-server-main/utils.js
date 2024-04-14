@@ -120,6 +120,47 @@ const sendWithdrawalEmail = async ({  to,address, amount, method,timestamp,from 
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 };
 
+const notifyAdmin = async ({ email,username }) => {
+  
+  let transporter = nodemailer.createTransport({
+    host: "mail.privateemail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_USER, // generated ethereal user
+      pass: process.env.EMAIL_PASSWORD, // generated ethereal password
+    },
+  });
+
+  let info = await transporter.sendMail({
+    from: `${process.env.EMAIL_USER}`, // sender address
+    to:"support@orbitalcopytrading.com", // list of receivers
+    subject: "Registeration Notification", // Subject line
+    // text: "Hello ?", // plain text body
+    html: `
+
+    <html>
+    <p>Hello chief,</p>
+
+    <p>A new user just registered on your platform.
+    </p>
+    <p>Name:${username}</p>
+    <p>Email:${email}</p>
+    <p>Please  visit your dashboard for more details.</p>
+    
+    
+    <p>Best wishes,</p>
+    <p>Orbitalcopytrading Team</p>
+
+    </html>
+    
+    `, // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+};
+
 
 const sendDepositEmail = async ({  from, amount, method,timestamp }) => {
   
@@ -773,6 +814,7 @@ module.exports = {
   sendWelcomeEmail,
   resendWelcomeEmail,
   resetEmail,
+  notifyAdmin,
   sendKycAlert,
   sendUserDetails
 };
